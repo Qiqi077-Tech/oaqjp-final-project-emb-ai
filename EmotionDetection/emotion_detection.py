@@ -17,4 +17,4 @@ def emotion_detector(text_to_analyse):
     results['dominant_emotion'] = max(results, key=results.get)
 
 
-    return response.text
+    return results
