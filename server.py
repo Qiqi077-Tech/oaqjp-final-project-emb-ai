@@ -1,4 +1,21 @@
-from flask import Flask, request, jsonify, render_template
+"""
+Flask web application for emotion detection.
+
+This module defines a Flask app that serves a homepage and an API endpoint /emotionDetector
+which accepts GET and POST requests to analyze the emotional content of input text.
+
+Endpoints:
+- / : Renders the main index.html page.
+- /emotionDetector : Accepts text input via query parameter (GET) or JSON (POST) and returns
+  detected emotions and the dominant emotion in a formatted string.
+
+The app uses the emotion_detector function from the EmotionDetection module to perform
+emotion analysis.
+
+Run this module to start the Flask development server.
+"""
+
+from flask import Flask, request, render_template
 from EmotionDetection import emotion_detector
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -35,7 +52,7 @@ def emotion_detector_api():
 
     result = emotion_detector(text)
 
-    if result.get('dominant_emotion') == None:
+    if result.get('dominant_emotion') is None:
         return '<b>Invalid text! Please try again!</b>'
 
     emotions = ['anger', 'disgust', 'fear', 'joy', 'sadness']
