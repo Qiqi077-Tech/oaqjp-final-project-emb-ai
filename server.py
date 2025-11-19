@@ -33,9 +33,6 @@ def emotion_detector_api():
         data = request.get_json()
         text = data.get('text', '') if data else ''
 
-    if not text:
-        return jsonify({"error": "Missing text"}), 400
-
     result = emotion_detector(text)
 
     if result.get('dominant_emotion') == None:
